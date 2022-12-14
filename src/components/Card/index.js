@@ -1,7 +1,9 @@
 import React from "react";
-import styles from "./Card.module.scss";
 import ContentLoader from "react-content-loader";
+
 import AppContext from "../../context";
+
+import styles from "./Card.module.scss";
 
 function Card({
   id,
@@ -24,7 +26,6 @@ function Card({
 
   const onClickFavorite = () => {
     onFavorite(obj);
-
     setIsFavorite(!isFavorite);
   };
 
@@ -37,9 +38,7 @@ function Card({
           height={260}
           viewBox="0 0 155 265"
           backgroundColor="#f3f3f3"
-          foregroundColor="#ecebeb"
-          // {...props}
-        >
+          foregroundColor="#ecebeb">
           <rect x="1" y="0" rx="10" ry="10" width="155" height="155" />
           <rect x="0" y="167" rx="5" ry="5" width="155" height="15" />
           <rect x="0" y="187" rx="5" ry="5" width="100" height="15" />
@@ -52,7 +51,7 @@ function Card({
             <div className={styles.favorite} onClick={onClickFavorite}>
               <img
                 src={
-                  isFavorite ? "/img/heart-liked.svg" : "/img/heart-unliked.svg"
+                  isFavorite ? 'img/liked.svg' : 'img/unliked.svg'
                 }
                 alt="Unkiked"
               />
@@ -71,7 +70,7 @@ function Card({
               <img
                 className={styles.plus}
                 src={
-                  isItemAdded(id) ? "/img/btn-checked.svg" : "/img/btn-plus.svg"
+                  isItemAdded(id) ? 'img/btn-checked.svg' : 'img/btn-plus.svg'
                 }
                 alt="Plus"
                 onClick={onClickPlus}

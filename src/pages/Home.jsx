@@ -15,13 +15,13 @@ function Home({
   
   const renderItems = () => {
     const filtredItems =items.filter((item) =>
-      item.title.toLowerCase().includes(searchValue.toLowerCase())
+      item.title.toLowerCase().includes(searchValue.toLowerCase()),
     );
     
     return (isLoading ? [...Array(12)] : filtredItems).map((item, index) => (
       <Card
         key={index}
-        onFavorite={onAddToFavorite}
+        onFavorite={(obj) => onAddToFavorite(obj)}
         onPlus={(obj) => onAddToCart(obj)}
         
         loading={isLoading}
@@ -38,12 +38,12 @@ function Home({
           {searchValue ? `Поиск по запросу: "${searchValue}"` : "Все кроссовки"}
         </h1>
         <div className="search-block d-flex">
-          <img src="/img/search.svg" alt="Search" />
+          <img src="img/search.svg" alt="Search" />
           {searchValue && (
             <img
-              onClick={() => setSearchValue("")}
+              onClick={() => setSearchValue('')}
               className="clear removeBtn cu-p"
-              src="/img/btn-remove.svg"
+              src="img/btn-remove.svg"
               alt="Clear"
             />
           )}

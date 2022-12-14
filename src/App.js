@@ -12,15 +12,13 @@ function App() {
   const [items, setItems] = React.useState([]);
   const [cartItems, setCartItems] = React.useState([]);
   const [favorites, setFavorites] = React.useState([]);
-  const [searchValue, setSearchValue] = React.useState("");
+  const [searchValue, setSearchValue] = React.useState('');
   const [cartOpenned, setCartOpened] = React.useState(false);
   const [isLoading, setIsLoading] = React.useState(true);
 
   React.useEffect(() => {
-    //todo сделать try catch + promise.all
     async function fechData() {
       try {
-        setIsLoading(true);
         const [cartRespons, favoritesRespons, itemsRespons] = await Promise.all(
           [
             axios.get("https://638fb6284bfe20f70ad8481f.mockapi.io/cart"),
@@ -31,8 +29,8 @@ function App() {
 
         setIsLoading(false);
 
-        setFavorites(favoritesRespons.data);
         setCartItems(cartRespons.data);
+        setFavorites(favoritesRespons.data);
         setItems(itemsRespons.data);
       } catch (error) {
         alert("Ошибка при запросе данных :(");
@@ -58,7 +56,7 @@ function App() {
       } else {
         setCartItems((prev) => [...prev, obj]);
         const { data } = await axios.post(
-          "https://638fb6284bfe20f70ad8481f.mockapi.io/cart",
+          'https://638fb6284bfe20f70ad8481f.mockapi.io/cart',
           obj
         );
         setCartItems((prev) => prev.map(item => { 
@@ -81,7 +79,7 @@ function App() {
     try {
       axios.delete(`https://638fb6284bfe20f70ad8481f.mockapi.io/cart/${id}`);
       setCartItems((prev) =>
-        prev.filter((item) => Number(item.parentId) !== Number(id))
+        prev.filter((item) => Number(item.id) !== Number(id))
       );
     } catch (error) {
       alert("Ошибка при удалении из корзины :(");
@@ -100,7 +98,7 @@ function App() {
         );
       } else {
         const { data } = await axios.post(
-          "https://638fb6284bfe20f70ad8481f.mockapi.io/favorites",
+          'https://638fb6284bfe20f70ad8481f.mockapi.io/favorites',
           obj
         );
         setFavorites((prev) => [...prev, data]);
@@ -145,7 +143,7 @@ function App() {
         <Routes>
           <Route>
             <Route
-              path="/"
+              path="/react-sneakers/"
               exact
               element={
                 <Home
@@ -160,8 +158,8 @@ function App() {
                 />
               }
             />
-            <Route path="/favorites" exact element={<Favorites />} />
-            <Route path="/orders" exact element={<Orders />} />
+            <Route path="/react-sneakers/favorites" exact element={<Favorites />} />
+            <Route path="/react-sneakers/orders" exact element={<Orders />} />
           </Route>
         </Routes>
       </div>

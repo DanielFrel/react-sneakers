@@ -18,8 +18,8 @@ function Drawer({ onClose, items = [], onRemove, opened }) {
     try {
       setIsLoading(true);
       const { data } = await axios.post(
-        "https://638fb6284bfe20f70ad8481f.mockapi.io/orders",
-        { items: cartItems }
+        'https://638fb6284bfe20f70ad8481f.mockapi.io/orders',
+        { items: cartItems, }
       );
 
       setOrderId(data.id);
@@ -29,7 +29,7 @@ function Drawer({ onClose, items = [], onRemove, opened }) {
       for (let i = 0; i < cartItems.length; i++) {
         const item = cartItems[i];
         await axios.delete(
-          "https://638fb6284bfe20f70ad8481f.mockapi.io/cart/" + item.id
+          'https://638fb6284bfe20f70ad8481f.mockapi.io/cart/' + item.id
         );
         await delay(1000);
       }
@@ -47,7 +47,7 @@ function Drawer({ onClose, items = [], onRemove, opened }) {
           <img
             onClick={onClose}
             className="removeBtn cu-p"
-            src="/img/btn-remove.svg"
+            src="img/btn-remove.svg"
             alt="Remove"
           />
         </h2>
@@ -70,7 +70,7 @@ function Drawer({ onClose, items = [], onRemove, opened }) {
                   <img
                     onClick={() => onRemove(obj.id)}
                     className="removeBtn"
-                    src="/img/btn-remove.svg"
+                    src="img/btn-remove.svg"
                     alt="Remove"
                   />
                 </div>
@@ -94,7 +94,7 @@ function Drawer({ onClose, items = [], onRemove, opened }) {
                 onClick={onClickOrder}
                 className="greenButton"
               >
-                Оформить заказ <img src="/img/arrow.svg" alt="arrow" />
+                Оформить заказ <img src="img/arrow.svg" alt="arrow" />
               </button>
             </div>
           </div>
@@ -104,12 +104,12 @@ function Drawer({ onClose, items = [], onRemove, opened }) {
             description={
               isOrderComplete
                 ? `Ваш заказ #${orderId} скоро будет передан курьерской доставке`
-                : "Добавьте хотя бы одну пару кроссовок, чтобы сделать заказ."
+                : 'Добавьте хотя бы одну пару кроссовок, чтобы сделать заказ.'
             }
             image={
               isOrderComplete
-                ? "/img/complete-order.jpg"
-                : "/img/empty-cart.jpg"
+                ? 'img/complete-order.jpg'
+                : 'img/empty-cart.jpg'
             }
           />
         )}
